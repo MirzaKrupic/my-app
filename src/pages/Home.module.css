@@ -1,0 +1,47 @@
+.featuresect {
+  width: 1116px;
+  height: 543.57px;
+  margin: 5% auto;
+  text-align: left;
+}
+
+.sectiontitle {
+  width: 100%;
+  height: auto;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.84px;
+  color: #000000;
+  text-transform: none;
+}
+
+.sectiontitlediv {
+  display: block;
+  border-bottom: 1px solid #d8d8d8;
+  margin-bottom: 1%;
+}
+
+.secondaryfeaturesect {
+  display: block;
+  width: 1120px;
+  height: 495px;
+}
+
+.mainsection {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  position: static;
+  height: 616px;
+}
+
+@media screen and (max-width: 768px) {
+  .featuresect {
+    height: 100%;
+    width: auto;
+  }
+}

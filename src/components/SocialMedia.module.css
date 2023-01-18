@@ -1,0 +1,10 @@
+.socialmediapositioning {
+  max-width: 150px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.social_media_icon{
+  font-size: 25px;
+}

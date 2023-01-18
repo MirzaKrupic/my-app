@@ -1,0 +1,16 @@
+.no_padding_left {
+  padding-left: 0;
+}
+
+.fetch_button {
+  padding: 16px 56px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 256px;
+  height: 59px;
+  background: #8367d8;
+  border-style: solid;
+  color: #fff;
+  margin-top: 81px;
+  margin-bottom: 50px;
+}

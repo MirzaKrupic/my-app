@@ -1,0 +1,36 @@
+.footercontainer {
+  background-color: #252525;
+  font-family: Lato, Arial, serif;
+  height: 356px;
+}
+
+.footercontainer h3 {
+  color: #929292;
+  margin-top: 31px;
+  padding: 0;
+  display: inline;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.footercontainer li {
+  color: #d8d8d8;
+  list-style-type: none;
+  margin-top: 14px;
+  font-size: 16px;
+}
+
+.footercontainer ul {
+  display: inline;
+  padding: 0 0 2px;
+  margin-right: 0;
+  text-align: left;
+  margin-top: 24px;
+}
+
+.col_positioning {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+}

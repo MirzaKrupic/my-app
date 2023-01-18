@@ -1,0 +1,29 @@
+.details_buttons_container {
+  display: block;
+  border-bottom: 1px solid #d8d8d8;
+  margin-top: 64px;
+  height: 35px;
+  text-align: left;
+}
+
+.item_option_button {
+  width: 180px;
+  font-size: 16px;
+  color: #000000;
+  background-color: #fff;
+  border: none;
+}
+
+.selected_item_option_button {
+  color: #8367d8;
+  padding-bottom: 6px;
+  border-bottom: 3px solid #8367d8;
+}
+
+.product_details {
+  width: 548px;
+  height: 336px;
+  color: #9b9b9b;
+  text-align: left;
+  margin-top: 32px;
+}

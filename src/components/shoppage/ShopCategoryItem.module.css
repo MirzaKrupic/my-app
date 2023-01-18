@@ -1,0 +1,42 @@
+.category_item_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 17px;
+  width: 214px;
+  margin-bottom: 24px;
+}
+
+.category_item_text {
+  font-size: 16px;
+  color: #252525;
+}
+
+.subcategoriy_item {
+  display: block;
+  text-align: left;
+  margin-bottom: 31px;
+  color: #9b9b9b;
+}
+
+.category_checkbox {
+  border: 1px solid #8367d8;
+  height: 15px;
+  width: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  font-size: 2em;
+  margin-right: 12.5px;
+}
+
+.collapse_option {
+  cursor: pointer;
+}
+
+.category_checkbox:checked {
+  background-color: #8367d8;
+}
