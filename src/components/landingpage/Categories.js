@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 function Categories(props) {
   const [categories, setCategories] = useState([]);
 
-  useEffect(async () => {
-    const fetchedCategories = await fetchCategories();
-    setCategories(fetchedCategories);
+  useEffect(() => {
+    (async () => {const fetchedCategories = await fetchCategories();
+    setCategories(fetchedCategories);})()
   }, []);
 
   return (
@@ -19,7 +19,9 @@ function Categories(props) {
         <p className={classes.categoriesheading}>CATEGORIES</p>
       </div>
       {categories
-        .filter(category => category.supercategoryId === null)
+        .filter((category) => category.supercategoryId === null)
+        .sort(() => Math.random() - Math.random())
+        .slice(0, 8)
         .map((category) => (
           <div className={classes.category_item}>
             <Link
@@ -32,7 +34,9 @@ function Categories(props) {
         ))}
 
       <div className={classes.category_item}>
-        <p>All Categories</p>
+        <Link className={classes.category_item_content} to={`/shop`}>
+          <p>All Categories</p>
+        </Link>
       </div>
     </section>
   );

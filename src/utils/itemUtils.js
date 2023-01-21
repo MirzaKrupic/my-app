@@ -5,6 +5,8 @@ export const computeTimeLeft = (date) => {
     if (d2.getTime() < d1.getTime()) {
       d1 = now;
       d2 = date;
+    } else {
+      return 0;
     }
     let yd = d1.getYear();
     let yn = d2.getYear();

@@ -3,7 +3,22 @@
   font-family: Lato, Arial, serif;
   height: 356px;
 }
+@media (max-width: 480px) {
+  .footercontainer {
+    max-width: 480px;
+    height: fit-content;
 
+  }
+  
+}
+@media (max-width: 768px) {
+  .footercontainer {
+    max-width: 768px;
+    height: fit-content;
+    
+  }
+  
+}
 .footercontainer h3 {
   color: #929292;
   margin-top: 31px;

@@ -1,4 +1,21 @@
-.page_container{
+.page_container {
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .page_container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .page_container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page_container {
     width: 1118px;
-    margin: 0 auto;
+  }
 }

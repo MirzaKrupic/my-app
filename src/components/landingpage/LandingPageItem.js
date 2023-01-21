@@ -14,15 +14,12 @@ function LandingPageItem(props) {
       <div className={`${props.item_type.toLowerCase()}_image_container`}>
         {props.photo && <img className={`full_size_picture`} src={props.photo.split(";")[0]} />}
       </div>
-      {isUserLoggedIn() ? (
+
         <Link className={`item_link`} to={`/items/${props.itemId}`}>
           <h3 className={`card_title`}>{props.name}</h3>
         </Link>
-      ) : (
-        <h3 className={`card_title`}>{props.name}</h3>
-      )}
       <p className={`card_description`}>
-        Start from <span className={`card_price`}>${props.startingPrice}</span>
+        Start from <span className={`card_price`}>${props.price}</span>
       </p>
     </div>
   );

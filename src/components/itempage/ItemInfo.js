@@ -7,6 +7,7 @@ import { itemBid } from "../../utils/itemService";
 import { useEffect, useState } from "react";
 import ItemDetails from "./ItemDetails";
 import { computeTimeLeft } from "../../utils/itemUtils";
+import {connect} from "../../utils/socket";
 
 function ItemInfo({
   bids,
@@ -21,14 +22,29 @@ function ItemInfo({
   const [currentAmount, setCurrentAmount] = useState(0);
   const [currentNumberOfBids, setCurrentNumberOfBids] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [currentItemState, setCurrentItemState] = useState(null);
 
-  useEffect(async () => {
+  useEffect( () => {
+    (async ()=> {
     if (bids) {
+      connect(setCurrentItemState);
       setCurrentNumberOfBids(bids.length);
-      setCurrentAmount(getHighestBid());
+      setCurrentAmount(getHighestBid(bids));
       setTimeLeft(computeTimeLeft(new Date(auctionEndDate)));
     }
+  })()
   }, [bids]);
+
+  useEffect(() => {
+    (async ()=> {
+    if (currentItemState !== null) {
+      console.log(currentItemState)
+      setCurrentNumberOfBids(currentItemState.bids.length);
+      setCurrentAmount(getHighestBid(currentItemState.bids));
+      setTimeLeft(computeTimeLeft(new Date(currentItemState.auctionEndDate)));
+    }
+  })()
+  }, [currentItemState]);
 
   const handleSubmit = async (item) => {
     const { amount } = item;
@@ -41,18 +57,16 @@ function ItemInfo({
           amount: parseFloat(amount),
         });
         setBidResponse(itemRes.body);
-        setCurrentAmount(amount);
-        setCurrentNumberOfBids(currentNumberOfBids + 1);
       } catch (e) {
         console.error(e);
       }
     }
   };
 
-  const getHighestBid = () => {
+  const getHighestBid = (bids) => {
     if (bids.length > 0) {
       const amounts = bids.map((bid) => bid.amount);
-      return Math.max(amounts);
+      return Math.max.apply(Math,amounts);
     } else return startingPrice;
   }
 
@@ -99,13 +113,14 @@ function ItemInfo({
                   className={classes.bidding_button}
                   type="submit"
                   variant="outline-*"
+                  disabled = {!isUserLoggedIn()}
                 >
                   PLACE BID
                 </Button>
               </Form>
             )}
           </Formik>
-          {bidResponse}
+          <div>{bidResponse}</div>
         </div>
         <ItemDetails details={details} />
       </div>

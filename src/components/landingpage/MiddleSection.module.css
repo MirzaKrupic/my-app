@@ -37,11 +37,14 @@
 @media screen and (max-width: 768px) {
   .feature_items_container {
     flex-direction: column;
+    width: auto;
+    height: auto;
   }
-
   .section_container {
     display: block;
     margin-top: 10%;
+    height: auto;
+    width: auto;
   }
 
   * {

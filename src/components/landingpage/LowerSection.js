@@ -41,7 +41,6 @@ function MiddleSection() {
     <div className="section_container">
       <div className="section_title_div">
         {renderButton("New Arrivals", LANDING_PAGE_TAB_VALUES.NORMAL)}
-        {renderButton("Top Rated", LANDING_PAGE_TAB_VALUES.TOP_RATED)}
         {renderButton("Last Chance", LANDING_PAGE_TAB_VALUES.LAST_CHANCE)}
       </div>
       <div className="feature_items_container">{items}</div>

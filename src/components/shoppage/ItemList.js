@@ -17,7 +17,8 @@ function ItemList(props) {
   const PAGE_SIZE = 4;
   const [refreshState, setRefreshState] = useState(true);
 
-  useEffect(async () => {
+  useEffect(() => {
+    (async ()=> {
     setItems([]);
     setHasMoreItems(true);
     setPage(0);
@@ -27,17 +28,22 @@ function ItemList(props) {
     if (props.selectedCategories.length > 0) {
       setSelectedSupercategory(0);
     }
+    console.log(props.searchedParam);
     setRefreshState(!refreshState);
+  })()
   }, [
     props.selectedSuperCategory,
     props.selectedCategories,
     props.price,
     props.selectedSort,
+    props.searchedParam
   ]);
 
-  useEffect(async () => {
+  useEffect(() => {
+    (async ()=> {
     let data = "";
-    if (selectedSupercategory !== null) {
+    if (selectedSupercategory !== null || props.searchedParam !== null) {
+      console.log(props.searchedParam)
       data = await fetchItems(
         page,
         PAGE_SIZE,
@@ -46,12 +52,14 @@ function ItemList(props) {
         selectedSupercategory,
         props.selectedCategories,
         props.price.min,
-        props.price.max
+        props.price.max,
+        props.searchedParam
       );
       setItems([...items, ...data.content]);
       setHasMoreItems(!data.last);
     }
-  }, [selectedSupercategory, page, refreshState]);
+  })()
+  }, [selectedSupercategory, page, refreshState, props.searchedParam]);
 
   const fetchData = async () => {
     setPage(page + 1);

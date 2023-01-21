@@ -19,6 +19,7 @@ function Shop({ setCurrentPage }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedSuperCategory, setSelectedSuperCategory] = useState(null);
+  const [searchedParam, setSearchedParam] = useState(null);
   const [selectedView, setSelectedView] = useState(VIEWS.LIST);
   const [price, setPrice] = useState({
     min: null,
@@ -77,14 +78,24 @@ function Shop({ setCurrentPage }) {
     setPrice({ min: newPrice[0], max: newPrice[1] });
   };
 
-  useEffect(async () => {
-    if (categoryId) {
+  const isNumber = (n) => {
+    return !isNaN(parseFloat(n)) && !isNaN(n - 0)
+  }
+
+  useEffect(() => {
+    (async ()=> {
+    console.log();
+    if (categoryId && isNumber(categoryId)) {
       setSelectedSuperCategory(parseInt(categoryId));
-    } else {
+    } else if(categoryId && !isNumber(categoryId)){
+      setSearchedParam(categoryId);
+    }
+     else {
       setSelectedSuperCategory(0);
     }
     const fetchedCategories = await fetchCategories();
     setCategories(fetchedCategories);
+  })()
   }, []);
 
   const chipDelete = (id) => {
@@ -95,7 +106,10 @@ function Shop({ setCurrentPage }) {
       setSelectedCategories(
         selectedCategories.filter((val) => val !== parseInt(id))
       );
-    } else {
+    } else if (id === -5) {
+      setSearchedParam(null);
+    }
+     else {
       setPrice({ min: null, max: null });
     }
   };
@@ -219,6 +233,10 @@ function Shop({ setCurrentPage }) {
                 onDelete={() => chipDelete(-1)}
               />
             )}
+            {searchedParam && <CustomChip
+                  label={searchedParam}
+                  onDelete={() => chipDelete(-5)}
+                />}
           </Stack>
           <div className={classes.item_list}>
             <ItemList
@@ -228,6 +246,7 @@ function Shop({ setCurrentPage }) {
               price={price}
               selectedSort={selectedSort}
               selectedView={selectedView}
+              searchedParam={searchedParam}
             />
           </div>
         </div>

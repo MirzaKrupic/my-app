@@ -7,30 +7,52 @@ import LowerSection from "../components/landingpage/LowerSection";
 import classes from "./Home.module.css";
 import LayoutContainer from "../components/LayoutContainer";
 import {PAGES} from "../utils/constants"
+import {AuthContext} from "../hooks/index";
+import { useEffect, useState, useRef, useContext } from "react";
+import {fetchRecommended, fetchUnrecommended} from "../utils/itemService";
+
+
 
 function Home({setCurrentPage}) {
 
   setCurrentPage(PAGES.HOME);
+  const { token, setToken, isUserLoggedIn } = useContext(AuthContext);
+  const [recommendedItems, setRecommendedItems] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+    let data = "";
+    if (token) {
+      data = await fetchRecommended(token);
+      setRecommendedItems(data);
+    } else {
+      data = await fetchUnrecommended();
+      setRecommendedItems(data);
+    }
+  })()
+  }, []);
+
 
   return (
     <LayoutContainer >
       <div className={classes.mainsection}>
         <Categories />
-        {/* <MainItemCard
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          hendrerit odio a erat lobortis auctor. Curabitur sodales pharetra
-          placerat. Aenean auctor luctus tempus. Cras laoreet et magna in
-          dignissim. Nam et tincidunt augue. Vivamus quis malesuada velit. In
-          hac habitasse platea dictumst"
-          price = "69,99"
-          title = "Title"
-        /> */}
+        {recommendedItems && <MainItemCard
+          description={recommendedItems[0].details}
+          price = {recommendedItems[0].startingPrice}
+          title = {recommendedItems[0].name}
+          itemId = {recommendedItems[0].itemId}
+          image = {recommendedItems[0].photo
+    ? recommendedItems[0].photo.split(";").filter((el) => el.length !== 0)
+    : []}
+        />}
+        
       </div>
 
-      {/* <UpperSection />
+      {recommendedItems && <UpperSection items = {recommendedItems.slice(1, 4)} />}
 
-      <MiddleSection /> */}
-
+      {recommendedItems && <MiddleSection items = {recommendedItems.slice(-4)} />
+}
       <LowerSection />
       </LayoutContainer>
   );

@@ -20,8 +20,8 @@ function InfiniteScrollComponent(props) {
     }
   };
 
-  useEffect(async () => {
-    let data = "";
+  useEffect(() => {
+  (async ()=> {let data = "";
     if(props.criteria === LANDING_PAGE_TAB_VALUES.NORMAL){
       data = await fetchItems(page, 20);
     }else if(props.criteria === LANDING_PAGE_TAB_VALUES.LAST_CHANCE){
@@ -30,6 +30,7 @@ function InfiniteScrollComponent(props) {
 
     setItems([...items, ...data.content]);
     setHasMoreItems(!data.last);
+  })()
   }, [page]);
 
   const fetchData = async () => {

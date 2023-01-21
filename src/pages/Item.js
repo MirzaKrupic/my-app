@@ -13,10 +13,12 @@ function Item() {
   const [item, setItem] = useState({});
   const { token, setToken, isUserLoggedIn } = useContext(AuthContext);
 
-  useEffect(async () => {
-    const fetchedItem = token ? await fetchItemById(itemId, token) : {};
+  useEffect(() => {
+    (async () => {
+    const fetchedItem = await fetchItemById(itemId);
 
     setItem(fetchedItem);
+  })()
   }, [token]);
 
   return (

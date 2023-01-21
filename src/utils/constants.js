@@ -4,7 +4,7 @@ export const LANDING_PAGE_TAB_VALUES = {
   TOP_RATED: "TOP_RATED",
 };
 
-export const HOST = "http://localhost:8080";
+export const HOST = "http://auctionappbackend-env.eba-ppzwsccy.us-east-1.elasticbeanstalk.com";
 
 export const ITEM_PAGE_TAB_VALUES = {
   DETAILS: "DETAILS",

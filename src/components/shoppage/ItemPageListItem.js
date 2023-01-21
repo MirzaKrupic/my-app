@@ -21,16 +21,7 @@ function ItemPageListItem({ name, price, photo, details, itemId }) {
           {details.length > 100 ? details.substring(0, 100) + "..." : details}
         </p>
         <p className={classes.item_price}>Start From ${price}</p>
-        <div className={classes.button_group}>
-          <div class={classes.item_button}>
-            {"Watchlist "}
-            <span class={classes.eye_icon}></span>
-          </div>
-          <div class={classes.item_button}>
-            {"Bid "}
-            <span class={classes.bid_icon}></span>
-          </div>
-        </div>
+
       </div>
     </div>
   );

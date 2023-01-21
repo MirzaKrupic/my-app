@@ -9,9 +9,11 @@ import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { getUserByToken } from "../utils/userUtils";
 import { updateUser, uploadUserImage } from "../utils/userUtils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTableCells, faBars, faCart } from "@fortawesome/free-solid-svg-icons";
 
-function My_Profile({ setCurrentPage }) {
-  setCurrentPage(PAGES.MY_ACCOUNT);
+function My_Profile({  }) {
+  //setCurrentPage(PAGES.MY_ACCOUNT);
   const fileRef = useRef();
   const textInput = useRef(null);
   let inputFile = '';
@@ -48,7 +50,8 @@ function My_Profile({ setCurrentPage }) {
     setSelectedGender(e.target.value);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+  (async ()=> {
     const history = browserHistory();
     if (token === null) {
       history.push("/login");
@@ -56,9 +59,11 @@ function My_Profile({ setCurrentPage }) {
     } else {
       setUser(await getUserByToken(token));
     }
+  })()
   }, [token]);
 
-  useEffect(async () => {
+  useEffect(() => {
+    (async ()=> {
     if(user){
       setFormInfo({
         firstName: user.firstName,
@@ -68,6 +73,7 @@ function My_Profile({ setCurrentPage }) {
       });
       setImgPreview(user.image);
     }
+  })()
   }, [user]);
 
   const handleSubmit = async (user) => {
@@ -101,6 +107,7 @@ function My_Profile({ setCurrentPage }) {
   };
 
   const uploadImage = async files => {
+    console.log(files);
     const formData = new FormData();
     formData.append("file", files[0]);
     formData.append("upload_preset", "dydlqwes");
@@ -113,14 +120,6 @@ function My_Profile({ setCurrentPage }) {
 
   return (
     <div>
-      <div className={classes.page_heading}>
-        <LayoutContainer>
-          <div className={classes.page_heading}>
-            <p>Profile</p>
-            <p>My Account -> Profile</p>
-          </div>
-        </LayoutContainer>
-      </div>
       <LayoutContainer>
         <div className={classes.required_container}>
           <div className={classes.section_heading}>

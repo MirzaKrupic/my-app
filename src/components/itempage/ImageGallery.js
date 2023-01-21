@@ -9,8 +9,10 @@ function ImageGallery({ image }) {
     imagesArr ? imagesArr[0] : null
   );
 
-  useEffect(async () => {
+  useEffect(() => {
+    (async ()=> {
     setCurrentImage(imagesArr[0]);
+  })()
   }, [image]);
 
   const renderImageOptions = () => {

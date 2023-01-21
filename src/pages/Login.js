@@ -80,14 +80,14 @@ function Login() {
               <button className={classes.login_button} type="submit">
                 LOGIN
               </button>
-              <div className={classes.login_social_network_section}>
+              {/* <div className={classes.login_social_network_section}>
                 <button className={classes.login_facebook_button} type="button">
                   LOGIN WITH FACEBOOK
                 </button>
                 <button className={classes.login_gmail_button} type="button">
                   LOGIN WITH GMAIL
                 </button>
-              </div>
+              </div> */}
             </Form>
           </div>
         )}

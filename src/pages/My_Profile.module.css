@@ -11,7 +11,7 @@
   height: 905px;
   border: 1px solid #e3e3e3;
 }
-.imgPreview{
+.imgPreview {
   width: 100%;
 }
 .required_section {
@@ -87,4 +87,5 @@
 .gender_select {
   width: 357px;
   height: 64px;
+  border-color: #d8d8d8;
 }

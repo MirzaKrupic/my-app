@@ -6,13 +6,16 @@ import SocialMedia from "./SocialMedia";
 import LayoutContainer from "./LayoutContainer";
 import { AuthContext } from "../hooks";
 import { useContext } from "react";
+import {logout} from "../utils/userUtils";
 
 function Header() {
-  const { isUserLoggedIn, setToken } = useContext(AuthContext);
+  const { token, isUserLoggedIn, setToken } = useContext(AuthContext);
 
   function handleLogout() {
+    logout(token);
     setToken(null);
     localStorage.removeItem("token");
+    
   }
 
   return (

@@ -9,7 +9,7 @@ if (process.env.REACT_APP_URL) {
   api = HOST;
 }
 
-export const fetchItems = async (page, size, order, orderColumn, superCategoryId, categories, minPrice, maxPrice) => {
+export const fetchItems = async (page, size, order, orderColumn, superCategoryId, categories, minPrice, maxPrice, searchParam) => {
   let url = `${api}/api/v1/items?page=${page}&size=${size}`;
   if(!!order){
     url = url + `&order=${order}`
@@ -29,6 +29,10 @@ export const fetchItems = async (page, size, order, orderColumn, superCategoryId
   if(maxPrice){
     url = url + `&maxPrice=${maxPrice}`
   }
+  if(searchParam){
+    url = url + `&searchParam=${searchParam}`
+  }
+  
   const items = await fetch(
     url
   );
@@ -60,6 +64,56 @@ export const itemBid = async (token, item) => {
       },
     })
     .then((res) => {
+      return res.data;
+    })
+    .catch((error) => {
+      handleResponse(error.response);
+    });
+};
+
+export const addItem = async (token, item) => {
+  return axios
+    .post(`${api}/api/v1/item/additem`, item, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      return res.data;
+    })
+    .catch((error) => {
+      handleResponse(error.response);
+    });
+};
+
+export const fetchRecommended = async (token) => {
+  return axios
+    .get(`${api}/api/v1/item/recommended`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      return res.data;
+    })
+    .catch((error) => {
+      handleResponse(error.response);
+    });
+};
+
+export const fetchUnrecommended = async () => {
+  return axios
+    .get(`${api}/api/v1/item/unrecommended`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => {
+      console.log(res);
       return res.data;
     })
     .catch((error) => {
